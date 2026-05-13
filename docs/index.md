@@ -1,5 +1,3 @@
-# DeepSeek TUI 社区版部署文档
-
 ## DeepSeek TUI简介
 
 DeepSeek TUI 是一个运行在终端中的 AI 编程智能体（Coding Agent），基于 DeepSeek V4 大模型构建。它可以读取和编辑文件、执行 Shell 命令、搜索网页、管理 Git 仓库，并从键盘驱动的 TUI 界面协调子代理完成复杂编程任务。
