@@ -23,22 +23,19 @@ DeepSeek TUI 是一个运行在终端中的 AI 编程智能体（Coding Agent）
 
 2. 确认订单完成后同意服务协议并点击**立即创建**。
 
-3. 等待部署完成后就可以开始使用服务，进入服务实例详情获取公网IP。
+3. 等待部署完成后远程连接服务器。
     ![result.png](2.jpg)
 
-## 使用说明
-
-### 通过 SSH 连接使用
-
-1. 本地电脑使用 SSH 连接到服务器：
+4. 连接后执行以下命令命令启动 TUI 界面：
     ```shell
-    ssh root@<公网IP>
+    sudo su root
+    cd /root
+    tmux 
+    deepseek-tui
     ```
-
-2. 连接后即可直接使用 `deepseek-tui` 命令启动 TUI 界面：
     ![result.png](3.jpg)
 
-3. 进入 TUI 界面后，可以直接输入编程任务：
+5. 进入 TUI 界面后，可以直接输入编程任务：
     ![tui.png](4.jpg)
 
 ## 使用指南
