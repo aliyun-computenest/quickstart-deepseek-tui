@@ -173,6 +173,19 @@ Parameters:
     MinLength: 8
     MaxLength: 30
     AssociationProperty: ALIYUN::ECS::Instance::Password
+  InternetChargeType:
+    Type: String
+    Label:
+      zh-cn: 带宽付费类型
+      en: Internet Charge Type
+    AssociationPropertyMetadata:
+      ValueLabelMapping:
+        PayByTraffic: 按流量计费
+        PayByBandwidth: 按固定带宽计费
+    AllowedValues:
+      - PayByBandwidth
+      - PayByTraffic
+    Default: PayByBandwidth
   DeepSeekApiKey:
     NoEcho: true
     Type: String
@@ -180,8 +193,8 @@ Parameters:
       en: DeepSeek API Key
       zh-cn: DeepSeek API Key
     Description:
-      en: 'DeepSeek API Key, please go to <a href="https://platform.deepseek.com/api_keys">DeepSeek Platform</a> to obtain.'
-      zh-cn: 'DeepSeek API Key，请前往<a href="https://platform.deepseek.com/api_keys">DeepSeek开放平台</a>获取。'
+      en: 'For DeepSeek API Key, please go to the API keys module of the DeepSeek Open Platform (https://platform.deepseek.com/api_keys) to create an API Key, and ensure your account balance is not zero before using it.'
+      zh-cn: 'DeepSeek API Key，请前往<a href="https://platform.deepseek.com/api_keys">DeepSeek开放平台</a>的 API keys 模块创建 API Key，并确认账号余额不为 0 后再使用。'
     AllowedPattern: '^sk-[a-zA-Z0-9]*$'
     Required: true
   ZoneId:
@@ -299,11 +312,13 @@ Resources:
         Ref: InstancePassword
       InstanceType:
         Ref: EcsInstanceType
-      SystemDiskCategory: cloud_essd
+      SystemDiskCategory: cloud_essd_entry
       SystemDiskSize: 40
       InternetMaxBandwidthOut: 3
       IoOptimized: optimized
       MaxAmount: 1
+      InternetChargeType:
+        Ref: InternetChargeType
   RunInstallCommand:
     Type: ALIYUN::ECS::RunCommand
     Properties:
@@ -327,6 +342,8 @@ Resources:
               Ref: DeepSeekApiKey
 Metadata:
   ALIYUN::ROS::Interface:
+    Hidden:
+      - InternetChargeType
     ParameterGroups:
       - Parameters:
           - PayType
@@ -352,3 +369,59 @@ Metadata:
           - VSwitchCidrBlock
         Label:
           default: 可用区配置
+    QuickDeployConfig:
+      PackageFields:
+        - Key: EcsInstanceType
+        - Key: SystemDiskCategory
+          Label:
+            zh-cn: 系统盘
+            en: System Disk
+          Value: 'ESSD Entry云盘 / 40 GB'
+        - Key: InternetChargeType
+          Label:
+            zh-cn: 公网带宽
+            en: Internet Charge Type
+          Value: '3 Mbps峰值带宽'
+        - Key: PayType
+          Label:
+            zh-cn: 付费类型
+            en: Pay Type
+          Value: '${PayType}'
+      PredefinedParameters:
+        - Name: 尝鲜体验，只需0.3元/小时
+          Parameters:
+            EcsInstanceType: ecs.e-c1m1.large
+            PayType: PostPaid
+            InternetChargeType: PayByTraffic
+          OrderList:
+            - EcsInstanceType
+            - PayType
+          Type: Normal
+          Description: '<br>可用学生专属算力包及300元学生优惠券抵扣！<a href="https://www.aliyun.com/activity/ecs/student-benefits?spm=5176.24779694.0.0.11e84d2244ZMlB&utm_content=g_1000409993#student-300coupon" target="_blank">立即领取</a>'
+          # DefaultRegion: cn-hangzhou
+        - Name: 热卖套餐，长期使用首选！
+          Parameters:
+            EcsInstanceType: ecs.e-c1m1.large
+            PayPeriodUnit: Month
+            PayPeriod: 12
+            PayType: PrePaid
+            InternetChargeType: PayByBandwidth
+          OrderList:
+            - EcsInstanceType
+            - PayType
+          Type: Normal
+          Description: '<br>包月使用，超值性价比'
+          # DefaultRegion: us-east-1
+        - Name: 自定义套餐
+          Parameters: {}
+          OrderList:
+            - EcsInstanceType
+            - PayType
+          Type: Custom
+      CustomFields:
+        - Key: InstancePassword
+        - Key: DeepSeekApiKey
+      CostRelatedKeys:
+        - RegionId
+      AutomaticZone:
+        ZoneIdKey: ZoneId
