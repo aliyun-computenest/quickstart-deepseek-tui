@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="计算巢是阿里云开放给企业应用服务商的服务管理平台。服务商能够在计算巢上发布私有化部署服务，为其客户提供云上软件一键部署的能力；同时也支持全托管模式的服务，赋能服务商托管其客户资源。">
+  <title>Home - Aliyun 计算巢 x Demo</title>
+
+  <link rel="shortcut icon" href="img/favicon.ico">
+
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+  <link rel="stylesheet" href="css/theme.css">
+  
+
+  
+
+  
+  
+
+  
+    <script src="search/main.js"></script>
+  
+
+  
+
+  <script src="js/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="nav">
+      <div class="nav-inner">
+        <div class="logo">
+          <img src="./img/logo-2x.png">
+        </div>
+        <div class="nav-list">
+          <ul>
+          
+              <li><a href="#deepseek-tui">DeepSeek TUI简介</a></li>
+              
+                  <li><a href="#_1">核心特性</a></li>
+                  
+              
+          
+              <li><a href="#_2">部署流程</a></li>
+              
+          
+              <li><a href="#_3">使用指南</a></li>
+              
+                  <li><a href="#_4">使用须知</a></li>
+                  
+              
+          
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="content theme-github">
+      
+      <div class="content-inner">        
+        
+        <h2 id="deepseek-tui">DeepSeek TUI简介</h2>
+<p>DeepSeek TUI 是一个运行在终端中的 AI 编程智能体（Coding Agent），基于 DeepSeek V4 大模型构建。它可以读取和编辑文件、执行 Shell 命令、搜索网页、管理 Git 仓库，并从键盘驱动的 TUI 界面协调子代理完成复杂编程任务。</p>
+<h3 id="_1">核心特性</h3>
+<ul>
+<li><strong>Auto 模式</strong> — 自动选择模型和推理级别（deepseek-v4-flash / deepseek-v4-pro）</li>
+<li><strong>思维链流式输出</strong> — 实时查看 DeepSeek 推理过程</li>
+<li><strong>完整工具套件</strong> — 文件操作、Shell 执行、Git 管理、Web 搜索/浏览、补丁应用、子代理、MCP 服务器</li>
+<li><strong>1M token 上下文</strong> — 上下文追踪、手动或配置压缩、前缀缓存遥测</li>
+<li><strong>三种工作模式</strong> — Plan（只读探索）、Agent（交互式审批）、YOLO（自动批准）</li>
+<li><strong>会话保存/恢复</strong> — 检查点和恢复长时间运行的会话</li>
+<li><strong>工作区回滚</strong> — 通过 side-git 实现每轮快照和 /restore 回滚</li>
+<li><strong>LSP 诊断</strong> — 每次编辑后通过 rust-analyzer、pyright 等提供内联错误/警告</li>
+</ul>
+<h2 id="_2">部署流程</h2>
+<ol>
+<li>
+<p>单击<a href="https://computenest.console.aliyun.com/service/instance/create/cn-hangzhou?type=user&amp;ServiceId=service-36eb43356c7443d4b03d">部署链接</a>，进入服务实例部署界面，根据界面提示填写参数，可以看到对应询价明细，确认参数后点击<strong>下一步：确认订单</strong>。</p>
+<p><img alt="deploy.png" src="1.jpg" /></p>
+</li>
+<li>
+<p>确认订单完成后同意服务协议并点击<strong>立即创建</strong>。</p>
+</li>
+<li>
+<p>等待部署完成后远程连接服务器。
+    <img alt="result.png" src="2.jpg" /></p>
+</li>
+<li>
+<p>连接后执行以下命令命令启动 TUI 界面：
+    <code>shell
+    sudo su root
+    cd /root
+    tmux 
+    deepseek-tui</code>
+    <img alt="result.png" src="3.jpg" /></p>
+</li>
+<li>
+<p>进入 TUI 界面后，可以直接输入编程任务：
+    <img alt="tui.png" src="4.jpg" /></p>
+</li>
+</ol>
+<h2 id="_3">使用指南</h2>
+<p>请查看<a href="https://github.com/Hmbown/DeepSeek-TUI/blob/main/README.zh-CN.md">官方文档</a></p>
+<h3 id="_4">使用须知</h3>
+<ul>
+<li>本工具为第三方开源项目，阿里云仅提供云资源和部署入口支持，不对工具自身功能、生成内容、执行结果、服务可用性及额外费用承担责任。</li>
+</ul>
+        
+      </div>
+
+      <div class="copyrights">© 2009-2022 Aliyun.com 版权所有</div>
+    </div>
+  </div>
+  
+  <!--
+  MkDocs version      : 1.6.1
+  Docs Build Date UTC : 2026-05-25 08:54:31.607606+00:00
+  -->
+</body>
+</html>
