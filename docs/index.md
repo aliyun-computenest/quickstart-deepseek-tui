@@ -12,7 +12,8 @@ DeepSeek TUI 是一个运行在终端中的 AI 编程智能体（Coding Agent）
 - **会话保存/恢复** — 检查点和恢复长时间运行的会话
 - **工作区回滚** — 通过 side-git 实现每轮快照和 /restore 回滚
 - **LSP 诊断** — 每次编辑后通过 rust-analyzer、pyright 等提供内联错误/警告
-- **多语言 UI** — 支持 en、ja、zh-Hans、pt-BR，自动检测
+
+[//]: # (- **多语言 UI** — 支持 en、ja、zh-Hans、pt-BR，自动检测)
 
 
 ## 部署流程
